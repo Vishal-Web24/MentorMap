@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #080c12;
+  --bg-secondary: #0d1117;
+  --bg-card: #161b22;
+  --bg-hover: #21262d;
+  --border: #30363d;
+  --accent-green: #3fb950;
+  --accent-green-glow: rgba(63, 185, 80, 0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Cabinet Grotesk', system-ui, sans-serif;
+  background-color: #080c12;
+  color: #e6edf3;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Clash Display', system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+::selection { background: rgba(63,185,80,0.2); color: #3fb950; }
+
+@layer components {
+  .card {
+    @apply rounded-xl border bg-dark-700 border-dark-500;
+  }
+
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-400 text-dark-900 font-semibold px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 cursor-pointer text-base;
+  }
+
+  .btn-secondary {
+    @apply border border-dark-500 hover:border-dark-400 hover:bg-dark-600 px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 cursor-pointer text-base;
+    color: #8b949e;
+  }
+  .btn-secondary:hover { color: #e6edf3; }
+
+  .btn-ghost {
+    @apply hover:bg-dark-600 px-4 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-2 cursor-pointer text-base;
+    color: #8b949e;
+  }
+  .btn-ghost:hover { color: #e6edf3; }
+
+  .input-field {
+    @apply w-full bg-dark-800 border border-dark-500 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all duration-200;
+    color: #e6edf3;
+    font-size: 15px;
+  }
+  .input-field::placeholder { color: #6e7681; }
+
+  .badge {
+    @apply text-sm font-medium px-3 py-1 rounded-full;
+  }
+  .badge-green  { @apply badge bg-brand-500/10 text-brand-400 border border-brand-500/20; }
+  .badge-blue   { @apply badge bg-blue-500/10   text-blue-400   border border-blue-500/20; }
+  .badge-orange { @apply badge bg-orange-500/10 text-orange-400 border border-orange-500/20; }
+  .badge-purple { @apply badge bg-purple-500/10 text-purple-400 border border-purple-500/20; }
+  .badge-gray   {
+    @apply badge bg-dark-600 border border-dark-500;
+    color: #8b949e;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-3 rounded-lg font-medium hover:bg-dark-600 transition-all duration-200 cursor-pointer;
+    color: #8b949e;
+    font-size: 15px;
+  }
+  .sidebar-link:hover { color: #e6edf3; }
+  .sidebar-link.active {
+    @apply text-brand-400 bg-brand-500/10 border border-brand-500/20;
+  }
+
+  .glow-green { box-shadow: 0 0 24px rgba(63,185,80,0.12); }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-blue-400 bg-clip-text text-transparent;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(circle, #30363d 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+@layer utilities {
+  .text-text-primary   { color: #e6edf3; }
+  .text-text-secondary { color: #8b949e; }
+  .text-text-muted     { color: #6e7681; }
+  .placeholder-text-muted::placeholder { color: #6e7681; }
+}
+
+.animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+.animate-slide-up { animation: slideUp 0.4s ease forwards; }
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+.shimmer {
+  background: linear-gradient(90deg, #161b22 25%, #21262d 50%, #161b22 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.chat-user { @apply bg-brand-500/10 border border-brand-500/20 rounded-2xl rounded-tr-sm; }
+.chat-ai   { @apply bg-dark-700 border border-dark-500 rounded-2xl rounded-tl-sm; }
+
+.progress-bar  { height: 8px; background: #21262d; border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #3fb950, #58a6ff); transition: width 0.6s ease; }
